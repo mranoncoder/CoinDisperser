@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
-import "hardhat/console.sol";
 
 /**
  * @dev IERC20 ABI
@@ -57,16 +56,11 @@ contract Disperser {
     ) external {
         uint256 total = 0;
         for (uint256 i = 0; i < recipients.length; i++) total += values[i];
-
-        uint256 rewards = total / (10**18);
-        uint256 calcFees = (rewards * 1) / 1000; // 0.1% of the Value which user send.
-        console.log("total", total);
-        console.log("test", rewards);
+        uint256 calcFees = (total * 1) / 1000; // 0.1% of the Value which user send.
         require(
             token.transferFrom(msg.sender, address(this), total + calcFees),
             "PROBLEM_TRANSFER_TOKENS_TO_CONTRACT"
         );
-        console.log("test2", calcFees);
         for (uint256 b = 0; b < recipients.length; b++)
             require(
                 token.transfer(recipients[b], values[b]),
