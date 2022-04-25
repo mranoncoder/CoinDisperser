@@ -1,0 +1,5 @@
+[
+  "function disperseCoin(address[],uint256[]) payable",
+  "function disperseToken(address,address[],uint256[])",
+  "function feeReceiverAddress() view returns (address)"
+]
