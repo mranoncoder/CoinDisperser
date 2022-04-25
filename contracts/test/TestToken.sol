@@ -8,7 +8,7 @@ contract TestToken is ERC20 {
     using SafeMath for uint256;
 
     constructor() ERC20("Test", "TEST") {
-        _mint(msg.sender, 10000);
-        _mint(address(this), 10000);
+        _mint(msg.sender, 10000 * 10**uint256(decimals()));
+        _mint(address(this), 10000 * 10**uint256(decimals()));
     }
 }
